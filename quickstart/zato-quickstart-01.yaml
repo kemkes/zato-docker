@@ -122,5 +122,6 @@
   become_user: "zato"
   shell: |
     cd ~/current
+    git remote set-url origin https://github.com/kemkes/zato.git
     git pull
     ~/current/update.sh
