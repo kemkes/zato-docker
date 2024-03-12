@@ -18,12 +18,12 @@ parent-build:
 	cp $(ZATO_ANSIBLE_QS_DIR)/* $(PARENT_IMAGE_DIR)
 	cd $(PARENT_IMAGE_DIR)
 	DOCKER_BUILDKIT=1 docker build --no-cache -t zato-$(ZATO_VERSION)-quickstart-parent $(PARENT_IMAGE_DIR)
-	docker tag zato-$(ZATO_VERSION)-quickstart-parent:latest ghcr.io/kemkes/zato-$(ZATO_VERSION)-quickstart-parent:latest
+	docker tag zato-$(ZATO_VERSION)-quickstart-parent:minimal ghcr.io/kemkes/zato-$(ZATO_VERSION)-quickstart-parent:minimal
 	cd $(CURDIR)
 
 parent-push:
-	echo $(ZATO_GHCR_TOKEN) | docker login ghcr.io -u $(ZATO_GHCR_USER) --password-stdin
-	docker push ghcr.io/kemkes/zato-$(ZATO_VERSION)-quickstart-parent:latest
+	echo $(ZATO_GHCR_TOKEN) | docker login ghcr.io -u $(ZATO_GHCR_USER) -p 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
+	docker push ghcr.io/kemkes/zato-$(ZATO_VERSION)-quickstart-parent:minimal
 	cd $(CURDIR)
 
 parent-all:
@@ -34,17 +34,17 @@ quickstart-build:
 	cp $(ZATO_ANSIBLE_QS_DIR)/* $(QUICKSTART_IMAGE_DIR)
 	cd $(QUICKSTART_IMAGE_DIR)
 	DOCKER_BUILDKIT=1 docker build --no-cache -t zato-$(ZATO_VERSION)-quickstart $(QUICKSTART_IMAGE_DIR)
-	docker tag zato-$(ZATO_VERSION)-quickstart:latest ghcr.io/kemkes/zato-$(ZATO_VERSION)-quickstart:latest
+	docker tag zato-$(ZATO_VERSION)-quickstart:minimal ghcr.io/kemkes/zato-$(ZATO_VERSION)-quickstart:minimal
 	cd $(CURDIR)
 
 dockerhub-push:
-	echo $(ZATO_DOCKER_HUB_TOKEN) | docker login -u $(ZATO_DOCKER_HUB_USER) --password-stdin
+	echo $(ZATO_DOCKER_HUB_TOKEN) | docker login -u $(ZATO_DOCKER_HUB_USER) -p SatuSehat@kemenkesRI
 	docker tag zato-$(ZATO_VERSION)-quickstart kemenkesri/zato-$(ZATO_VERSION)-quickstart
 	docker push kemenkesri/zato-$(ZATO_VERSION)-quickstart
 
 github-push:
-	echo $(ZATO_GHCR_TOKEN) | docker login ghcr.io -u $(ZATO_GHCR_USER) --password-stdin
-	docker push ghcr.io/kemkes/zato-$(ZATO_VERSION)-quickstart:latest
+	echo $(ZATO_GHCR_TOKEN) | docker login ghcr.io -u $(ZATO_GHCR_USER) -p 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
+	docker push ghcr.io/kemkes/zato-$(ZATO_VERSION)-quickstart:minimal
 	cd $(CURDIR)
 
 all-build-push:
