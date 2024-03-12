@@ -44,16 +44,16 @@
     zato_qs_run_01: "{{ Zato_Run_Quickstart_Step_01 | default(False) }}"
     zato_qs_run_02: "{{ Zato_Run_Quickstart_Step_02 | default(False) }}"
 
-    zato_use_mysql: "{{ Zato_Use_MySQL | default('yes') | eq('yes') }}"
-    zato_use_postgresql: "{{ Zato_Use_PostgreSQL | default('yes') | eq('yes') }}"
+    zato_use_mysql: "{{ Zato_Use_MySQL | default('yes') == 'yes' }}"
+    zato_use_postgresql: "{{ Zato_Use_PostgreSQL | default('yes') == 'yes' }}"
 
     zato_install_playwright: "{{ Zato_Install_Playwright | default(False) }}"
 
     zato_ext_lib_dir: "{{ Zato_Extlib_Dir | default(False) }}"
     zato_map_ssh_dir: "{{ Zato_Map_SSH_Dir | default(False) }}"
-    zato_install_binaries: "{{ Zato_Install_Binaries | default('yes') | eq('yes') }}"
+    zato_install_binaries: "{{ Zato_Install_Binaries | default('yes') == 'yes' }}"
     zato_use_hashicorp_vault: "{{ Zato_Use_Hashicorp_Vault | default(False) }}"
-    zato_enable_redis: "{{ Zato_Enable_Redis | default('yes') | eq('yes') }}"
+    zato_enable_redis: "{{ Zato_Enable_Redis | default('yes') == 'yes' }}"
     zato_pre_enmasse_script: "{{ Zato_Pre_Enmasse_Script | default(False) }}"
     zato_post_install_script: "{{ Zato_Post_Install_Script | default(False) }}"
     zato_env_file: "{{ Zato_Env_File | default('/env-file-does-not-exist') }}"
