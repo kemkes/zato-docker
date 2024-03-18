@@ -14,7 +14,7 @@ COPY zato-quickstart-02.yaml /zato-ansible/zato-quickstart-02.yaml
 
 # Run Ansible provisioning
 RUN ansible-playbook -c local -i localhost, /zato-ansible/zato-quickstart.yaml -v \
-    --extra-vars '{"Zato_Run_Quickstart_Step_01":true, "Zato_Use_MySQL":"no", "Zato_Use_PostgreSQL":"no","Zato_Enable_Redis":"no"}'
+    --extra-vars '{"Zato_Run_Quickstart_Step_01":true, "Zato_Use_MySQL":"no", "Zato_Use_PostgreSQL":"no", "Zato_Enable_Redis":"no"}'
 
 # To make it easy to enter a container
 CMD ["/bin/bash"]
