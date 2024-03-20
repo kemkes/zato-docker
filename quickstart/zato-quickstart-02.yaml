@@ -1,4 +1,9 @@
 
+- name: "Check that the {{ zato_env_path_installed }} exists"
+  stat:
+    path: "{{ zato_env_path_installed }}"
+  register: zato_installed_path
+
 - name: Install NodeJS (for testing) (02)
   when: zato_run_internal_tests or zato_install_playwright
   shell: |
@@ -334,6 +339,7 @@
     rm -rf {{ zato_env_path }}
 
 - name: Create a quickstart environment (02)
+  when: not zato_installed_path.stat.exists
   become: true
   become_user: "zato"
   shell: |
@@ -568,12 +574,14 @@
     url: http://127.0.0.1:11223/zato/ping
 
 - name: Set Dashboard password (02)
+  when: not zato_installed_path.stat.exists
   become: true
   become_user: "zato"
   shell: |
     ~/current/bin/zato update password {{ zato_env_path }}/web-admin admin --password "{{ zato_password or zato_dashboard_admin_password }}" --verbose
 
 - name: Set IDE password (02)
+  when: not zato_installed_path.stat.exists
   become: true
   become_user: "zato"
   shell: |
@@ -620,6 +628,13 @@
   become_user: "zato"
   shell: |
     /usr/bin/bash /tmp/zato-post-install-script.sh
+
+- name: "Save file {{ zato_env_path_installed }} (02)"
+  when: not zato_installed_path.stat.exists
+  become: true
+  become_user: "zato"
+  shell: |
+    touch {{ zato_env_path_installed }}
 
 - name: Run internal tests (it may take 10+ minutes) (02)
   when: zato_run_internal_tests
