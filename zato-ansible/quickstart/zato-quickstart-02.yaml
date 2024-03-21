@@ -634,6 +634,7 @@
   become: true
   become_user: "zato"
   shell: |
+    mkdir -p "$(dirname {{ zato_env_path_installed }})"
     touch {{ zato_env_path_installed }}
 
 - name: Run internal tests (it may take 10+ minutes) (02)
