@@ -92,6 +92,7 @@
 
       zato_db_username_main: "{{ zato_db_username_main }}"
       zato_db_password_main: "{{ zato_db_password_main }}"
+      zato_env_path_installed: "{{ zato_env_path_installed }}"
 
   tasks:
 
@@ -145,6 +146,7 @@
         zato_tls_verify: "{{ Zato_TLS_Verify | default(True) }}"
         zato_run_internal_tests: "{{ Zato_Run_Internal_Tests | default(False) }}"
 
+        zato_env_path_installed: "{{ zato_db_password_pubsub }}"
     - name: Run tasks 01 (init)
       when: zato_qs_run_01
       import_tasks: zato-quickstart-01.yaml
