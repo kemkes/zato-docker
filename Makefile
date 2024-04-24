@@ -15,7 +15,7 @@ PARENT_IMAGE_DIR=$(CURDIR)/parent
 QUICKSTART_IMAGE_DIR=$(CURDIR)/quickstart
 
 parent-build:
-	cp $(ZATO_ANSIBLE_QS_DIR)/* $(PARENT_IMAGE_DIR)
+	cp $(ZATO_ANSIBLE_QS_DIR)/*.yaml $(PARENT_IMAGE_DIR)
 	cd $(PARENT_IMAGE_DIR)
 	DOCKER_BUILDKIT=1 docker build --no-cache -t zato-$(ZATO_VERSION)-minimal-parent $(PARENT_IMAGE_DIR)
 	docker tag zato-$(ZATO_VERSION)-minimal-parent:latest ghcr.io/kemkes/zato-$(ZATO_VERSION)-minimal-parent:latest
