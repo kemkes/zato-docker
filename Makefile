@@ -9,6 +9,7 @@ ZATO_ANSIBLE_DIR=$(CURDIR)/zato-ansible
 ZATO_ANSIBLE_QS_DIR=$(ZATO_ANSIBLE_DIR)/quickstart
 
 ZATO_GHCR_USER=vinixsatria
+ZATO_GHCR_TOKEN=GfY6wjVwhEhDrlcFvL2Fl8ogrhcsew1GouuL
 ZATO_DOCKER_HUB_USER=kemenkesri
 
 PARENT_IMAGE_DIR=$(CURDIR)/parent
@@ -22,7 +23,7 @@ parent-build:
 	cd $(CURDIR)
 
 parent-push:
-	echo $(ZATO_GHCR_TOKEN) | docker login ghcr.io -u $(ZATO_GHCR_USER) -p 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
+	docker login ghcr.io -u $(ZATO_GHCR_USER) -p ghp_$(ZATO_GHCR_TOKEN)
 	docker push ghcr.io/kemkes/zato-$(ZATO_VERSION)-minimal-parent:latest
 	cd $(CURDIR)
 
@@ -43,7 +44,7 @@ dockerhub-push:
 	docker push kemenkesri/zato-$(ZATO_VERSION)-minimal
 
 github-push:
-	echo $(ZATO_GHCR_TOKEN) | docker login ghcr.io -u $(ZATO_GHCR_USER) -p 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
+	echo $(ZATO_GHCR_TOKEN) | docker login ghcr.io -u $(ZATO_GHCR_USER) -p ghp_$(ZATO_GHCR_TOKEN)
 	docker push ghcr.io/kemkes/zato-$(ZATO_VERSION)-minimal:latest
 	cd $(CURDIR)
 
