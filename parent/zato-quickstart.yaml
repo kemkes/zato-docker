@@ -11,11 +11,11 @@
     zato_env_path: "/opt/zato/env/qs-1"
     zato_env_path_installed: "{{ zato_env_path }}/installed/finished"
 
-    zato_db_main: "{{ Zato_ODB_Name or Zato_DB_Main_Name | default('zato_db_main1') }}"
-    zato_db_pubsub: "{{ Zato_ODB_Name or Zato_DB_PubSub_Name | default('zato_db_pubsub1') }}"
+    zato_db_main: "{{ Zato_ODB_Name | default(Zato_DB_Main_Name) or 'zato_db_main1' }}"
+    zato_db_pubsub: "{{ Zato_ODB_Name | default(Zato_DB_PubSub_Name) or 'zato_db_pubsub1' }}"
 
-    zato_db_username_main: "{{ Zato_ODB_Username or Zato_DB_Main_Username | default('zato_user_main1') }}"
-    zato_db_username_pubsub: "{{ Zato_ODB_Username or Zato_DB_PubSub_Username | default('zato_user_pubsub1') }}"
+    zato_db_username_main: "{{ Zato_ODB_Username | default(Zato_DB_Main_Username) or 'zato_user_main1' }}"
+    zato_db_username_pubsub: "{{ Zato_ODB_Username | default(Zato_DB_PubSub_Username) or 'zato_user_pubsub1' }}"
 
     pg_conf_path: "/etc/postgresql/{{ pg_version }}/main/postgresql.conf"
     pg_hba_conf_path: "/etc/postgresql/{{ pg_version }}/main/pg_hba.conf"
