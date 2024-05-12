@@ -22,7 +22,7 @@ parent-build:
 	cd $(CURDIR)
 
 parent-push:
-	echo $(ZATO_GHCR_TOKEN) | docker login ghcr.io -u $(ZATO_GHCR_USER) -p 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
+	echo $(ZATO_GHCR_TOKEN) | docker login ghcr.io -u $(ZATO_GHCR_USER) -p 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
 	docker push ghcr.io/kemkes/zato-$(ZATO_VERSION)-minimal-parent:latest
 	cd $(CURDIR)
 
@@ -43,7 +43,7 @@ dockerhub-push:
 	docker push kemenkesri/zato-$(ZATO_VERSION)-minimal
 
 github-push:
-	echo $(ZATO_GHCR_TOKEN) | docker login ghcr.io -u $(ZATO_GHCR_USER) -p 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
+	echo $(ZATO_GHCR_TOKEN) | docker login ghcr.io -u $(ZATO_GHCR_USER) -p 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
 	docker push ghcr.io/kemkes/zato-$(ZATO_VERSION)-minimal:latest
 	cd $(CURDIR)
 
