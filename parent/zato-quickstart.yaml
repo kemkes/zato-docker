@@ -9,6 +9,7 @@
     zato_tests_base_dir: "~/{{ zato_version }}.0"
 
     zato_env_path: "/opt/zato/env/qs-1"
+    zato_env_path_installed: "{{ zato_env_path }}/installed/finished"
 
     zato_db_main: "{{ Zato_DB_Main_Name | default('zato_db_main1') }}"
     zato_db_pubsub: "{{ Zato_DB_PubSub_Name | default('zato_db_pubsub1') }}"
@@ -91,6 +92,7 @@
 
       zato_db_username_main: "{{ zato_db_username_main }}"
       zato_db_password_main: "{{ zato_db_password_main }}"
+      zato_env_path_installed: "{{ zato_env_path_installed }}"
 
   tasks:
 
@@ -144,6 +146,7 @@
         zato_tls_verify: "{{ Zato_TLS_Verify | default(True) }}"
         zato_run_internal_tests: "{{ Zato_Run_Internal_Tests | default(False) }}"
 
+        zato_env_path_installed: "{{ zato_env_path_installed }}"
     - name: Run tasks 01 (init)
       when: zato_qs_run_01
       import_tasks: zato-quickstart-01.yaml
