@@ -17,6 +17,7 @@ env_keys = [
     'Zato_Dashboard_Password',
     'Zato_Dashboard_Session_Timeout',
     'Zato_IDE_Password',
+    'Zato_SSH_Password',
     'Zato_Is_Quickstart',
 
     'Zato_Python_Reqs',
