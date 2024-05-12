@@ -1,12 +1,12 @@
 FROM ghcr.io/zatosource/zato-3.2-quickstart-parent:latest
 
 # Install prerequisites for Ansible
-RUN set -x && \
-    apt-get update && \
-    apt-get -y install python3 python3-nacl python3-pip libffi-dev sudo
+#RUN set -x && \
+#    apt-get update && \
+#    apt-get -y install python3 python3-nacl python3-pip libffi-dev sudo
 
 # Install Ansible
-RUN pip3 install ansible
+#RUN pip3 install ansible
 
 # Copy the base Ansible playbook for use inside the container
 COPY zato-quickstart.yaml    /zato-ansible/zato-quickstart.yaml
