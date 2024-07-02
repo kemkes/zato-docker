@@ -3,27 +3,30 @@ MAKEFLAGS += --silent
 
 default: echo
 
-ZATO_VERSION=3.2
+Zato_Version=3.2
 
-ZATO_ANSIBLE_DIR=$(CURDIR)/zato-ansible
-ZATO_ANSIBLE_QS_DIR=$(ZATO_ANSIBLE_DIR)/quickstart
+Zato_Ansible_Dir=$(CURDIR)/zato-ansible
+Zato_Ansible_QS_Dir=$(Zato_Ansible_Dir)/quickstart
 
-ZATO_GHCR_USER=vinixsatria
-ZATO_DOCKER_HUB_USER=kemenkesri
+Parent_Image_Dir=$(CURDIR)/parent
+Quickstart_Image_Dir=$(CURDIR)/quickstart
 
-PARENT_IMAGE_DIR=$(CURDIR)/parent
-QUICKSTART_IMAGE_DIR=$(CURDIR)/quickstart
+copy-ansible-scripts:
+	cp $(Quickstart_Image_Dir)/zato-quickstart.yaml $(Zato_Ansible_QS_Dir)/zato-quickstart.yaml
+	cp $(Quickstart_Image_Dir)/zato-quickstart-01.yaml $(Zato_Ansible_QS_Dir)/zato-quickstart-01.yaml
+	cp $(Quickstart_Image_Dir)/zato-quickstart-02.yaml $(Zato_Ansible_QS_Dir)/zato-quickstart-02.yaml
 
 parent-build:
-	cp $(ZATO_ANSIBLE_QS_DIR)/* $(PARENT_IMAGE_DIR)
-	cd $(PARENT_IMAGE_DIR)
-	DOCKER_BUILDKIT=1 docker build --no-cache -t zato-$(ZATO_VERSION)-quickstart-parent $(PARENT_IMAGE_DIR)
-	docker tag zato-$(ZATO_VERSION)-quickstart-parent:latest ghcr.io/kemkes/zato-$(ZATO_VERSION)-quickstart-parent:latest
+	$(MAKE) copy-ansible-scripts
+	cp $(Zato_Ansible_QS_Dir)/* $(Parent_Image_Dir)
+	cd $(Parent_Image_Dir)
+	DOCKER_BUILDKIT=1 docker build --no-cache -t zato-$(Zato_Version)-quickstart-parent $(Parent_Image_Dir)
+	docker tag zato-$(Zato_Version)-quickstart-parent:latest ghcr.io/zatosource/zato-$(Zato_Version)-quickstart-parent:latest
 	cd $(CURDIR)
 
 parent-push:
-	echo $(ZATO_GHCR_TOKEN) | docker login ghcr.io -u $(ZATO_GHCR_USER) --password-stdin
-	docker push ghcr.io/kemkes/zato-$(ZATO_VERSION)-quickstart-parent:latest
+	echo $(Zato_GitHub_Token) | docker login ghcr.io -u $(Zato_GitHub_User) --password-stdin
+	docker push ghcr.io/zatosource/zato-$(Zato_Version)-quickstart-parent:latest
 	cd $(CURDIR)
 
 parent-all:
@@ -31,20 +34,21 @@ parent-all:
 	$(MAKE) parent-push
 
 quickstart-build:
-	cp $(ZATO_ANSIBLE_QS_DIR)/* $(QUICKSTART_IMAGE_DIR)
-	cd $(QUICKSTART_IMAGE_DIR)
-	DOCKER_BUILDKIT=1 docker build --no-cache -t zato-$(ZATO_VERSION)-quickstart $(QUICKSTART_IMAGE_DIR)
-	docker tag zato-$(ZATO_VERSION)-quickstart:latest ghcr.io/kemkes/zato-$(ZATO_VERSION)-quickstart:latest
+	$(MAKE) copy-ansible-scripts
+	cp $(Zato_Ansible_QS_Dir)/* $(Quickstart_Image_Dir)
+	cd $(Quickstart_Image_Dir)
+	DOCKER_BUILDKIT=1 docker build --no-cache -t zato-$(Zato_Version)-quickstart $(Quickstart_Image_Dir)
+	docker tag zato-$(Zato_Version)-quickstart:latest ghcr.io/zatosource/zato-$(Zato_Version)-quickstart:latest
 	cd $(CURDIR)
 
 dockerhub-push:
-	echo $(ZATO_DOCKER_HUB_TOKEN) | docker login -u $(ZATO_DOCKER_HUB_USER) --password-stdin
-	docker tag zato-$(ZATO_VERSION)-quickstart kemenkesri/zato-$(ZATO_VERSION)-quickstart
-	docker push kemenkesri/zato-$(ZATO_VERSION)-quickstart
+	echo $(Zato_DockerHub_Token) | docker login -u $(Zato_DockerHub_User) --password-stdin
+	docker tag zato-$(Zato_Version)-quickstart zatosource/zato-$(Zato_Version)-quickstart
+	docker push zatosource/zato-$(Zato_Version)-quickstart
 
 github-push:
-	echo $(ZATO_GHCR_TOKEN) | docker login ghcr.io -u $(ZATO_GHCR_USER) --password-stdin
-	docker push ghcr.io/kemkes/zato-$(ZATO_VERSION)-quickstart:latest
+	echo $(Zato_GitHub_Token) | docker login ghcr.io -u $(Zato_GitHub_User) --password-stdin
+	docker push ghcr.io/zatosource/zato-$(Zato_Version)-quickstart:latest
 	cd $(CURDIR)
 
 all-build-push:
