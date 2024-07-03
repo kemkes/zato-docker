@@ -26,7 +26,6 @@
       - locales
       - libssl-dev
       - lsb-release
-      - redis-server
       - libldap2-dev
       - libsasl2-dev
       - openssh-server
@@ -36,14 +35,6 @@
       - python3-virtualenv
       - apt-transport-https
       - software-properties-common
-
-- name: Install MySQL (01)
-  when: zato_use_mysql
-  apt:
-    name:
-      - mysql-server
-      - mysql-client
-      - python3-pymysql
 
 - name: Ensure the expected locales are generated (01)
   shell: |
