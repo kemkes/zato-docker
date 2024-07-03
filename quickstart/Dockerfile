@@ -21,9 +21,7 @@ RUN mkdir -p /opt/hot-deploy/python-reqs/ && \
 
 # Signal to Ansible that it should provision a new environment
 ENV Zato_Run_Quickstart_Step_02=true
-ENV Zato_Use_MySQL=no
 ENV Zato_Use_PostgreSQL=no
-ENV Zato_Enable_Redis=no
 
 # Dashboard
 EXPOSE 8183

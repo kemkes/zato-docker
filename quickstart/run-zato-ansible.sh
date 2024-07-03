@@ -63,10 +63,8 @@ env_keys = [
     'Zato_Run_Internal_Tests',
     'Zato_Run_Quickstart_Step_01',
     'Zato_Run_Quickstart_Step_02',
-    'Zato_Use_MySQL',
     'Zato_Use_PostgreSQL',
-    'Zato_Enable_Redis',
-
+    
     'Zato_Server_Ping_On_Startup',
     'Zato_Server_Ping_On_Startup_Request',
     'Zato_Server_Ping_With_Interval',
