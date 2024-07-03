@@ -24,6 +24,11 @@ env_keys = [
     'Zato_User_Conf_Dir',
     'Zato_Extlib_Dir',
 
+    'Zato_Host_Redis',
+
+    'Zato_Load_Balancer_Host',
+    'Zato_Load_Balancer_Port',
+
     'Zato_Create_Extra_User_01',
     'Zato_Create_Extra_User_02',
     'Zato_Create_Extra_User_03',
@@ -90,6 +95,11 @@ env_keys_prev = {
     'ODB_NAME':     'Zato_ODB_Name',
     'ODB_USERNAME': 'Zato_ODB_Username',
     'ODB_PASSWORD': 'Zato_ODB_Password',
+
+    'ZATO_HOST_REDIS': 'Zato_Host_Redis',
+
+    'ZATO_LOAD_BALANCER_HOST': 'Zato_Load_Balancer_Host',
+    'ZATO_LOAD_BALANCER_PORT': 'Zato_Load_Balancer_Port',
 
     'ZATO_SSH_PASSWORD':           'Zato_SSH_Password',
     'ZATO_WEB_ADMIN_PASSWORD':     'Zato_Dashboard_Password',

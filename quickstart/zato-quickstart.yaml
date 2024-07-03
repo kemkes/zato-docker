@@ -51,10 +51,13 @@
     zato_map_ssh_dir: "{{ Zato_Map_SSH_Dir | default(False) }}"
     zato_install_binaries: "{{ Zato_Install_Binaries | default(True) }}"
     zato_enable_redis: "{{ Zato_Enable_Redis | default(True) }}"
+    zato_host_redis: "{{ Zato_Host_Redis | default('localhost') }}"
     zato_pre_enmasse_script: "{{ Zato_Pre_Enmasse_Script | default(False) }}"
     zato_post_install_script: "{{ Zato_Post_Install_Script | default(False) }}"
     zato_env_file: "{{ Zato_Env_File | default('/env-file-does-not-exist') }}"
     zato_hot_deploy_dir: "{{ Zato_Hot_Deploy_Dir | default('') }}"
+    zato_lb_host: "{{ Zato_Load_Balancer_Host | default('127.0.0.1') }}"
+    zato_lb_port: "{{ Zato_Load_Balancer_Port | default('11223') }}"
 
     zato_start_preamble: |
         export PATH=$PATH:~/current/bin
